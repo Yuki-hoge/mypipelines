@@ -4,9 +4,7 @@ image_resource:
   type: docker-image
   source:
     repository: getourneau/alpine-bash-git
+inputs:
+  - name: inputs
 run:
-  path: bash
-  args: 
-  - -c
-  - |
-    echo "Hello, World"
+  path: ./inputs/hello.sh

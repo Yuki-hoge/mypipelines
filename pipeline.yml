@@ -1,0 +1,21 @@
+---
+# Resourceの定義
+resources:
+# Git Resourceの定義
+- name: hello
+  type: git
+  source:
+    uri: https://github.com/Yuki-hoge/mypipelines.git
+- name: 5m
+  type: time
+  source: {interval: 5m}
+
+jobs:
+- name: hello-5m-job
+  public: true # UI上でJobの結果をログイン不要で公開するかどうか
+  plan:
+  - get: hello
+  - get: 5m
+    trigger: true # Resourceに変更があれば自動でジョブを実行するかどうか
+  - task: run-hello
+    file: hello/hello2.yml
